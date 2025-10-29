@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Pagamento Seguro - Cinevag</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffcc00",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#121212",
+                        "secondary-dark": "#1c1c1c",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-white/10 px-10 py-3 container mx-auto">
+                <div class="flex items-center gap-4 text-white">
+                    <div class="h-6 w-6 text-primary">
+                        <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Cinevag</h2>
+                </div>
+                <div class="flex items-center gap-2 text-sm font-bold leading-normal tracking-[0.015em] text-white/70">
+                    <span class="material-symbols-outlined text-lg">lock</span>
+                    <span>Pagamento Seguro</span>
+                </div>
+            </header>
+
+            <main class="flex-1 px-4 py-10 container mx-auto">
+                <div class="layout-content-container flex flex-col max-w-4xl mx-auto">
+                    
+                    <div class="flex flex-wrap justify-between gap-3 p-4">
+                        <p class="text-white text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Complete sua Compra</p>
+                    </div>
+
+                    <div class="p-4 @container">
+                        <h3 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-3">Resumo do Pedido</h3>
+                        <div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-start shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-white/5">
+                            <div class="w-full @xl:w-1/3 bg-center bg-no-repeat aspect-video @xl:aspect-square bg-cover rounded-lg" data-alt="Poster do filme" id="filmPoster"></div>
+                            <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 py-4 @xl:px-4 px-4">
+                                <p id="filmTitle" class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Carregando...</p>
+                                <div class="flex flex-col gap-1 text-white/70">
+                                    <p id="sessionDateTime" class="text-base font-normal leading-normal">Carregando...</p>
+                                    <p id="orderSeats" class="text-base font-normal leading-normal">Carregando...</p>
+                                    <p id="orderQuantity" class="text-base font-normal leading-normal"></p>
+                                    <p id="orderTotal" class="text-lg font-bold leading-normal mt-2">Total: Carregando...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Escolha a forma de pagamento</h2>
+
+                    <div class="flex px-4 py-3">
+                        <div class="flex h-12 flex-1 items-center justify-center rounded-lg bg-white/5 p-1">
+                            <label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-3 has-[:checked]:bg-white/10 has-[:checked]:shadow-[0_0_4px_rgba(0,0,0,0.1)] has-[:checked]:text-white text-white/70 text-sm font-medium leading-normal transition-all">
+                                <span class="material-symbols-outlined mr-2">credit_card</span>
+                                <span class="truncate">Cartão de Crédito</span>
+                                <input checked="" class="invisible w-0" name="paymentMethod" type="radio" value="creditcard"/>
+                            </label>
+                            <label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-3 has-[:checked]:bg-white/10 has-[:checked]:shadow-[0_0_4px_rgba(0,0,0,0.1)] has-[:checked]:text-white text-white/70 text-sm font-medium leading-normal transition-all">
+                                <span class="material-symbols-outlined mr-2">receipt</span>
+                                <span class="truncate">Boleto</span>
+                                <input class="invisible w-0" name="paymentMethod" type="radio" value="boleto"/>
+                            </label>
+                            <label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-3 has-[:checked]:bg-white/10 has-[:checked]:shadow-[0_0_4px_rgba(0,0,0,0.1)] has-[:checked]:text-white text-white/70 text-sm font-medium leading-normal transition-all">
+                                <span class="material-symbols-outlined mr-2">qr_code_2</span>
+                                <span class="truncate">Pix</span>
+                                <input class="invisible w-0" name="paymentMethod" type="radio" value="pix"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="p-4">
+                        <!-- Formulário de Cartão de Crédito -->
+                        <form class="space-y-4 payment-form" id="creditCardForm" data-payment-method="creditcard">
+                            <div class="grid grid-cols-1 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-white/70 mb-1" for="card-number">Número do Cartão</label>
+                                    <div class="relative">
+                                        <input class="w-full rounded-lg border-white/20 bg-white/5 p-3 text-white focus:border-primary focus:ring-primary transition-colors" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" type="text" maxlength="19" pattern="[0-9\s]{13,19}" required autocomplete="cc-number"/>
+                                        <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-white/50">credit_card</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-white/70 mb-1" for="card-holder">Nome do Titular</label>
+                                    <input class="w-full rounded-lg border-white/20 bg-white/5 p-3 text-white focus:border-primary focus:ring-primary transition-colors" id="card-holder" name="card-holder" placeholder="Nome como impresso no cartão" type="text" required autocomplete="cc-name"/>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-white/70 mb-1" for="expiry-date">Validade</label>
+                                        <input class="w-full rounded-lg border-white/20 bg-white/5 p-3 text-white focus:border-primary focus:ring-primary transition-colors" id="expiry-date" name="expiry-date" placeholder="MM/AA" type="text" maxlength="5" required autocomplete="cc-exp"/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-white/70 mb-1" for="cvv">CVV</label>
+                                        <div class="relative">
+                                            <input class="w-full rounded-lg border-white/20 bg-white/5 p-3 text-white focus:border-primary focus:ring-primary transition-colors" id="cvv" name="cvv" placeholder="123" type="text" maxlength="3" required autocomplete="cc-csc"/>
+                                            <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-white/50 cursor-help" title="Os 3 dígitos no verso do cartão">help_outline</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4">
+                                <button class="w-full flex items-center justify-center rounded-lg bg-primary py-3.5 text-base font-bold text-white shadow-lg shadow-primary/20 transition-all hover:bg-primary/90" type="submit">
+                                    Confirmar Pagamento
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Formulário de Boleto -->
+                        <form class="space-y-4 payment-form hidden" id="boletoForm" data-payment-method="boleto">
+                            <div class="bg-white/5 rounded-lg p-6 text-white">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="material-symbols-outlined text-primary text-2xl">info</span>
+                                    <div>
+                                        <p class="font-bold">Informações do Boleto</p>
+                                        <p class="text-sm text-white/70">O boleto será gerado após a confirmação</p>
+                                    </div>
+                                </div>
+                                <ul class="space-y-2 text-sm text-white/70">
+                                    <li class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-primary text-base">schedule</span>
+                                        <span>Vencimento em 1 dia útil</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-primary text-base">receipt_long</span>
+                                        <span>Processamento em até 3 dias úteis</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pt-4">
+                                <button class="w-full flex items-center justify-center rounded-lg bg-primary py-3.5 text-base font-bold text-white shadow-lg shadow-primary/20 transition-all hover:bg-primary/90" type="submit">
+                                    Gerar Boleto
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Formulário de Pix -->
+                        <form class="space-y-4 payment-form hidden" id="pixForm" data-payment-method="pix">
+                            <div class="bg-white/5 rounded-lg p-6 text-white">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="material-symbols-outlined text-primary text-2xl">qr_code_2</span>
+                                    <div>
+                                        <p class="font-bold">Pagamento via PIX</p>
+                                        <p class="text-sm text-white/70">O QR Code será gerado após a confirmação</p>
+                                    </div>
+                                </div>
+                                <ul class="space-y-2 text-sm text-white/70">
+                                    <li class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-primary text-base">timer</span>
+                                        <span>Pagamento processado em segundos</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-primary text-base">verified</span>
+                                        <span>Confirmação instantânea</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pt-4">
+                                <button id="generatePixBtn" class="w-full flex items-center justify-center rounded-lg bg-primary py-3.5 text-base font-bold text-white shadow-lg shadow-primary/20 transition-all hover:bg-primary/90" type="submit">
+                                    Gerar QR Code PIX
+                                </button>
+                                <div id="pixQrContainer" class="mt-4 hidden">
+                                    <div class="bg-white/5 rounded-lg p-4 text-white flex flex-col items-center gap-3">
+                                        <p class="font-bold">Escaneie o QR Code com seu app bancário</p>
+                                        <div id="pixQr" class="bg-white p-2 rounded"></div>
+                                        <p id="pixAmount" class="text-sm text-white/70"></p>
+                                        <div class="flex gap-3 w-full">
+                                            <button id="confirmPixBtn" class="flex-1 rounded-lg bg-primary py-2 text-sm font-bold">Já paguei</button>
+                                            <button id="cancelPixBtn" class="flex-1 rounded-lg bg-transparent border border-white/30 py-2 text-sm">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <script>
+                            // Ao submeter o pagamento, marcar confirmação e redirecionar
+                            (function(){
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    // Configurar máscara do cartão de crédito
+                                    const cardNumber = document.getElementById('card-number');
+                                    if (cardNumber) {
+                                        cardNumber.addEventListener('input', function(e) {
+                                            let value = e.target.value.replace(/\D/g, '');
+                                            if (value.length > 16) value = value.substr(0, 16);
+                                            let groups = value.match(/.{1,4}/g) || [];
+                                            e.target.value = groups.join(' ');
+                                        });
+                                    }
+
+                                    // Configurar máscara da data de validade
+                                    const expiryDate = document.getElementById('expiry-date');
+                                    if (expiryDate) {
+                                        expiryDate.addEventListener('input', function(e) {
+                                            let value = e.target.value.replace(/\D/g, '');
+                                            if (value.length > 4) value = value.substr(0, 4);
+                                            if (value.length > 2) {
+                                                value = value.substr(0, 2) + '/' + value.substr(2);
+                                            }
+                                            e.target.value = value;
+                                        });
+                                    }
+
+                                    // Configurar máscara do CVV
+                                    const cvv = document.getElementById('cvv');
+                                    if (cvv) {
+                                        cvv.addEventListener('input', function(e) {
+                                            let value = e.target.value.replace(/\D/g, '');
+                                            if (value.length > 3) value = value.substr(0, 3);
+                                            e.target.value = value;
+                                        });
+                                    }
+                                    // Configurar alternância entre métodos de pagamento
+                                    const paymentMethods = document.getElementsByName('paymentMethod');
+                                    const paymentForms = document.querySelectorAll('.payment-form');
+
+                                    function showPaymentForm(method) {
+                                        paymentForms.forEach(form => {
+                                            if (form.dataset.paymentMethod === method) {
+                                                form.classList.remove('hidden');
+                                            } else {
+                                                form.classList.add('hidden');
+                                            }
+                                        });
+                                    }
+
+                                    paymentMethods.forEach(radio => {
+                                        radio.addEventListener('change', function() {
+                                            showPaymentForm(this.value);
+                                        });
+                                    });
+
+                                    // Configurar submissão dos formulários
+                                    paymentForms.forEach(form => {
+                                        form.addEventListener('submit', async function(e) {
+                                            e.preventDefault();
+                                            const method = this.dataset.paymentMethod;
+
+                                            // Validação específica para cartão de crédito
+                                            if (method === 'creditcard') {
+                                                const cardNumber = document.getElementById('cardNumber');
+                                                const expiryDate = document.getElementById('expiryDate');
+                                                const cvv = document.getElementById('cvv');
+                                                
+                                                if (!cardNumber.value.replace(/\s/g, '').match(/^\d{16}$/)) {
+                                                    alert('Por favor, insira um número de cartão válido (16 dígitos)');
+                                                    return;
+                                                }
+                                                if (!expiryDate.value.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
+                                                    alert('Por favor, insira uma data de validade válida (MM/AA)');
+                                                    return;
+                                                }
+                                                if (!cvv.value.match(/^\d{3}$/)) {
+                                                    alert('Por favor, insira um CVV válido (3 dígitos)');
+                                                    return;
+                                                }
+                                            }
+
+                                            // Tratamento por método
+                                            const button = e.submitter;
+                                            const originalText = button ? button.textContent : '';
+
+
+                                            if (method === 'pix') {
+                                                // Gera um QR code no formato EMV (PIX) usando a chave fornecida
+                                                const rawAmount = sessionStorage.getItem('cv_total') || (document.getElementById('orderTotal') ? document.getElementById('orderTotal').textContent.replace(/[^0-9,\.]/g, '').replace(',', '.') : '0');
+                                                // normaliza amount para formato com ponto e duas casas
+                                                let amount = rawAmount;
+                                                try {
+                                                    amount = Number(String(rawAmount).replace(',', '.')).toFixed(2);
+                                                } catch(e) {
+                                                    amount = String(rawAmount);
+                                                }
+
+                                                const seats = sessionStorage.getItem('cv_seats') || (document.getElementById('orderSeats') ? document.getElementById('orderSeats').textContent.replace(/^Assentos:\s*/i, '') : '');
+                                                const film = sessionStorage.getItem('cv_film') || (document.getElementById('filmTitle') ? document.getElementById('filmTitle').textContent : 'Ingresso');
+                                                const txid = String(Date.now()).slice(-25);
+
+                                                // Chave PIX solicitada pelo usuário
+                                                const pixKey = '09004413138';
+
+                                                // Helpers para montar campos EMV
+                                                function buildField(id, value) {
+                                                    const v = String(value || '');
+                                                    const l = String(v.length).padStart(2, '0');
+                                                    return id + l + v;
+                                                }
+
+                                                // CRC16-CCITT (polynomial 0x1021, initial 0xFFFF)
+                                                function crc16(buffer) {
+                                                    let crc = 0xFFFF;
+                                                    for (let i = 0; i < buffer.length; i++) {
+                                                        crc ^= buffer.charCodeAt(i) << 8;
+                                                        for (let j = 0; j < 8; j++) {
+                                                            crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+                                                            crc &= 0xFFFF;
+                                                        }
+                                                    }
+                                                    return crc.toString(16).toUpperCase().padStart(4, '0');
+                                                }
+
+                                                // Monta payload EMV conforme especificação PIX (simplificada)
+                                                function buildPixPayload({key, amount, txid, merchantName='Cinevag', merchantCity='SAO PAULO'}) {
+                                                    let payload = '';
+                                                    payload += buildField('00', '01'); // Payload Format Indicator
+                                                    payload += buildField('01', '12'); // Point of Initiation Method (12 = dynamic)
+
+                                                    // Merchant Account Information (GUI + chave)
+                                                    const mai = buildField('00', 'br.gov.bcb.pix') + buildField('01', key);
+                                                    payload += buildField('26', mai);
+
+                                                    payload += buildField('52', '0000'); // Merchant Category Code
+                                                    payload += buildField('53', '986');  // Currency BRL
+                                                    if (amount && Number(amount) > 0) payload += buildField('54', amount);
+                                                    payload += buildField('58', 'BR');
+                                                    payload += buildField('59', merchantName.substring(0,25));
+                                                    payload += buildField('60', merchantCity.substring(0,15));
+
+                                                    // Additional Data Field Template - txid
+                                                    const adf = buildField('05', txid);
+                                                    payload += buildField('62', adf);
+
+                                                    // CRC (tag 63) - calculate over payload + '6304'
+                                                    const payloadForCrc = payload + '6304';
+                                                    const crc = crc16(payloadForCrc);
+                                                    payload += '63' + '04' + crc;
+
+                                                    return payload;
+                                                }
+
+                                                const payload = buildPixPayload({ key: pixKey, amount: amount, txid: txid, merchantName: 'Cinevag', merchantCity: 'SAO PAULO' });
+
+                                                // Limpa QR anterior
+                                                const qrContainer = document.getElementById('pixQr');
+                                                qrContainer.innerHTML = '';
+
+                                                try {
+                                                    new QRCode(qrContainer, { text: payload, width: 260, height: 260 });
+                                                } catch(err) {
+                                                    qrContainer.textContent = payload;
+                                                }
+
+                                                // Atualiza valor mostrado
+                                                const amountEl = document.getElementById('pixAmount');
+                                                if (amountEl) {
+                                                    try {
+                                                        amountEl.textContent = 'Valor: ' + Number(amount).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                                                    } catch(e) {
+                                                        amountEl.textContent = 'Valor: R$ ' + amount;
+                                                    }
+                                                }
+
+                                                // Mostra container e desabilita botão gerador
+                                                const container = document.getElementById('pixQrContainer');
+                                                if (container) container.classList.remove('hidden');
+                                                if (button) button.disabled = true;
+
+                                                // Configura botões confirmar / cancelar
+                                                const confirmBtn = document.getElementById('confirmPixBtn');
+                                                const cancelBtn = document.getElementById('cancelPixBtn');
+
+                                                function finalizePixPayment() {
+                                                    try {
+                                                        sessionStorage.setItem('paymentConfirmed', 'true');
+                                                        sessionStorage.removeItem('cv_selectedSeats');
+                                                        sessionStorage.removeItem('cv_quantity');
+                                                        sessionStorage.removeItem('cv_total');
+                                                        sessionStorage.removeItem('proceedToPayment');
+                                                    } catch(e) { console.warn(e); }
+                                                    alert('Pagamento PIX confirmado. Obrigado!');
+                                                    window.location.href = 'tela1.html';
+                                                }
+
+                                                if (confirmBtn) {
+                                                    confirmBtn.onclick = finalizePixPayment;
+                                                }
+                                                if (cancelBtn) {
+                                                    cancelBtn.onclick = function() {
+                                                        if (container) container.classList.add('hidden');
+                                                        if (button) button.disabled = false;
+                                                    };
+                                                }
+
+                                                return; // não prosseguir com o fluxo padrão
+                                            }
+
+                                            // Para outros métodos, segue processamento simulado
+                                            if (button) {
+                                                button.disabled = true;
+                                                button.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span>';
+                                            }
+
+                                            try {
+                                                // Simula tempo de processamento
+                                                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                                                // Marca pagamento como confirmado
+                                                sessionStorage.setItem('paymentConfirmed', 'true');
+                                                // Limpa dados da sessão
+                                                sessionStorage.removeItem('cv_selectedSeats');
+                                                sessionStorage.removeItem('cv_quantity');
+                                                sessionStorage.removeItem('cv_total');
+                                                sessionStorage.removeItem('proceedToPayment');
+
+                                                // Mensagens específicas por método
+                                                let message = '';
+                                                if (method === 'creditcard') {
+                                                    message = 'Pagamento processado com sucesso! Você receberá um email com os detalhes do pedido.';
+                                                } else if (method === 'boleto') {
+                                                    message = 'Boleto gerado com sucesso! Você receberá o boleto por email.';
+                                                }
+
+                                                alert(message);
+                                                window.location.href = 'tela1.html';
+                                            } catch(err) {
+                                                console.error('Erro ao processar pagamento:', err);
+                                                alert('Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.');
+                                                if (button) {
+                                                    button.disabled = false;
+                                                    button.textContent = originalText;
+                                                }
+                                            }
+                                        });
+                                    });
+
+                                    // Seleciona o primeiro método de pagamento por padrão
+                                    if (paymentMethods.length > 0) {
+                                        paymentMethods[0].checked = true;
+                                        showPaymentForm(paymentMethods[0].value);
+                                    }
+                                });
+                            })();
+                        </script>
+                    </div>
+
+                    <div class="text-center text-xs text-white/50 p-4 mt-4">
+                        <p>Sua transação é segura. Para mais informações, consulte nossos <a class="underline hover:text-white" href="#">Termos de Serviço</a> e <a class="underline hover:text-white" href="#">Política de Privacidade</a>.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+    // Preenche o resumo do pedido a partir do sessionStorage (prioritário) ou da query string
+    (function(){
+        // Função para formatar valores monetários
+        function formatCurrency(value) {
+            return Number(value).toLocaleString('pt-BR', { 
+                style: 'currency', 
+                currency: 'BRL' 
+            });
+        }
+
+        // Primeiro tenta obter do sessionStorage (chaves definidas em tela4)
+        function getSession(key) {
+            try { return sessionStorage.getItem(key); } catch(e) { return null; }
+        }
+
+        const s_film = getSession('cv_film');
+        const s_seats = getSession('cv_seats');
+        const s_quantity = getSession('cv_quantity');
+        const s_total = getSession('cv_total');
+        const s_date = getSession('cv_date');
+        const s_time = getSession('cv_time');
+        const s_cinema = getSession('cv_cinema');
+        const s_poster = getSession('cv_poster');
+
+        // Se não houver em sessionStorage, usa query params como fallback
+        const params = new URLSearchParams(window.location.search);
+        const film = s_film || params.get('film');
+        const seats = s_seats || params.get('seats');
+        const quantity = s_quantity || params.get('quantity');
+        const total = s_total || params.get('total');
+        const date = s_date || params.get('date');
+        const time = s_time || params.get('time');
+        const cinema = s_cinema || params.get('cinema');
+
+        // Obtém elementos do DOM
+        const filmEl = document.getElementById('filmTitle');
+        const sessionEl = document.getElementById('sessionDateTime');
+        const seatsEl = document.getElementById('orderSeats');
+        const totalEl = document.getElementById('orderTotal');
+        const qtyEl = document.getElementById('orderQuantity');
+        const posterEl = document.getElementById('filmPoster');
+
+        // Preenche o título do filme e atualiza título da página
+        if (film && filmEl) {
+            const decodedFilm = typeof film === 'string' ? decodeURIComponent(film) : film;
+            filmEl.textContent = decodedFilm;
+            document.title = `Pagamento - ${decodedFilm} - Cinevag`;
+        }
+
+        // Preenche a data, hora e cinema da sessão
+        if (date || time || cinema) {
+            const dtParts = [];
+            if (date) dtParts.push(typeof date === 'string' ? decodeURIComponent(date) : date);
+            if (time) dtParts.push(typeof time === 'string' ? decodeURIComponent(time) : time);
+            if (cinema) dtParts.push(typeof cinema === 'string' ? decodeURIComponent(cinema) : cinema);
+            if (sessionEl && dtParts.length > 0) {
+                sessionEl.textContent = dtParts.join(' — ');
+            }
+        }
+
+        // Preenche os assentos selecionados e quantidade
+        if (seatsEl) {
+            if (quantity && seats) {
+                const decodedSeats = typeof seats === 'string' ? decodeURIComponent(seats) : seats;
+                seatsEl.textContent = `Assentos: ${decodedSeats}`;
+                if (qtyEl) {
+                    qtyEl.textContent = `${quantity} ingresso${quantity === '1' ? '' : 's'}`;
+                }
+            } else if (seats) {
+                seatsEl.textContent = `Assentos: ${typeof seats === 'string' ? decodeURIComponent(seats) : seats}`;
+            }
+        }
+
+        // Formata e preenche o valor total
+        if (totalEl && total) {
+            try {
+                totalEl.textContent = 'Total: ' + formatCurrency(total);
+            } catch(e) {
+                totalEl.textContent = 'Total: R$ ' + total;
+            }
+        }
+
+        // Se houver pôster salvo, aplica ao elemento
+        if (posterEl) {
+            const posterUrl = s_poster || null;
+            if (posterUrl) {
+                posterEl.style.backgroundImage = `url('https://ohoje.com/wp-content/uploads/2025/10/O-Telefone-Preto-2-terror-com-Ethan-Hawke-tem-cenas-pos-creditos-1024x576.webp')`;
+            }
+        }
+
+        // Validação básica dos parâmetros essenciais (aceita sessionStorage ou params)
+        if (!film || !seats || !total) {
+            alert('Informações do pedido incompletas. Por favor, selecione seus assentos novamente.');
+            window.location.href = 'tela1.html';
+        }
+    })();
+</script>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecione Seus Assentos</title>
+    <style>
+        /* Estilos básicos para a página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fundo escuro */
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            gap: 40px;
+        }
+
+        /* Estilos do Conteúdo Principal (Assentos) */
+        .main-content { /* Área onde os assentos são exibidos */
+            flex-grow: 1;
+        }
+
+        h1 { /* Título principal */
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .movie-info { /* Informações do filme */
+            font-size: 1.1em;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .cinema-layout { /* Layout do cinema */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1c1c1c; /* Fundo mais claro para a área de assentos */
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .screen-label { /* Rótulo da tela */
+            width: 100%;
+            text-align: center;
+            border-bottom: 3px solid #ffcc00; /* Linha amarela para a tela */
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .seat-grid { /* Grade de assentos */
+            display: grid;
+            /* 14 colunas: label esquerda (auto), 12 colunas de assentos (cada 34px), label direita (auto) */
+            grid-template-columns: auto repeat(12, 34px) auto;
+            gap: 5px;
+            justify-content: center; /* centraliza a grid dentro do container */
+        }
+
+        /* Estilos dos Assentos */
+        .seat { /* Assento individual */
+            width: 30px;
+            height: 30px;
+            margin: 2px;
+            background-color: #444; /* Disponível */
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            color: transparent; /* Esconder o texto/ícone por padrão */
+        }
+
+        .seat.unavailable { 
+            background-color: #333; /* Ocupado */
+            cursor: not-allowed;
+        }
+
+        .seat.selected {
+            background-color: #ffcc00; /* Selecionado - Amarelo */
+        }
+
+        .seat.accessible {
+            background-color: #007bff; /* Acessível - Azul */
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .seat.accessible.selected {
+            background-color: #ffcc00; /* Acessível e Selecionado */
+        }
+
+        /* Estilos para as letras das fileiras (A, B, C...) */
+        .row-label {
+            text-align: center;
+            font-weight: bold;
+            line-height: 30px; /* Alinhar com a altura do assento */
+            width: 34px; /* largura igual à coluna do assento para alinhamento consistente */
+        }
+
+        /* Estilos para os números das colunas (1, 2, 3...) */
+        .column-numbers {
+            display: grid;
+            grid-template-columns: auto repeat(12, 34px) auto; /* mesmo template da grade de assentos */
+            gap: 5px;
+            margin-top: 10px;
+            justify-content: center; /* alinha com a grid de assentos */
+        }
+
+        .column-number-item {
+            text-align: center;
+            font-weight: bold;
+            line-height: 30px;
+        }
+        .column-number-item:first-child, .column-number-item:last-child {
+            visibility: hidden; /* Esconder os rótulos de coluna nas posições das letras */
+            width: 34px;
+        }
+
+        /* Estilos do Painel Lateral (Legenda e Resumo) */
+        .sidebar {
+            width: 300px;
+            background-color: #1c1c1c;
+            padding: 20px;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        /* Legenda */
+        .legend h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+
+        .legend-color.disponivel { background-color: #444; }
+        .legend-color.selecionado { background-color: #ffcc00; }
+        .legend-color.ocupado { background-color: #333; }
+        .legend-color.acessivel {
+            background-color: #007bff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        /* Resumo da Seleção */
+        .summary {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .summary h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .confirm-button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #ffcc00;
+            color: #1c1c1c;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .confirm-button:hover {
+            background-color: #e0b400;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="main-content">
+    <h1>Selecione Seus Assentos</h1>
+    <div class="movie-info">Filme: Telefone Preto 2, Cinevag</div>
+    <!-- Exibe a sessão selecionada (data/hora/cinema) quando fornecida via query string -->
+    <div id="selected-session" class="movie-info" style="margin-top:0.25rem; font-weight:600; color:#ffd700"></div>
+
+        <div class="cinema-layout">
+            <div class="screen-label">TELA</div>
+
+            <div class="seat-grid" id="seatGrid">
+                </div>
+
+            <div class="column-numbers"> <!-- Números das colunas: espaço vazio + 1..12 + espaço vazio -->
+                <div class="column-number-item"></div>
+                <div class="column-number-item">1</div>
+                <div class="column-number-item">2</div>
+                <div class="column-number-item">3</div>
+                <div class="column-number-item">4</div>
+                <div class="column-number-item">5</div>
+                <div class="column-number-item">6</div>
+                <div class="column-number-item">7</div>
+                <div class="column-number-item">8</div>
+                <div class="column-number-item">9</div>
+                <div class="column-number-item">10</div>
+                <div class="column-number-item">11</div>
+                <div class="column-number-item">12</div>
+                <div class="column-number-item"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="legend">
+            <h2>Legenda</h2>
+            <div class="legend-item">
+                <div class="legend-color disponivel"></div>
+                <span>Disponível</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color selecionado"></div>
+                <span>Selecionado</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color ocupado"></div>
+                <span>Ocupado</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color acessivel"><i class="fas fa-wheelchair"></i></div>
+                <span>Acessível (PCD)</span>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h2>Resumo da Seleção</h2>
+            <div class="summary-line">
+                <span>Assentos Selecionados:</span>
+                <span id="selectedSeatsList"></span>
+            </div>
+            <div class="summary-line">
+                <span>Quantidade:</span>
+                <span id="quantity">0</span>
+            </div>
+
+            <div class="total-section">
+                <span>Total:</span>
+                <span id="totalPrice">R$ 0,00</span>
+            </div>
+                    <button class="confirm-button" id="confirmButton" disabled type="button">Confirmar Assentos</button>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script>
+    const seatGrid = document.getElementById('seatGrid'); // Elemento do grid de assentos
+    const selectedSeatsListEl = document.getElementById('selectedSeatsList'); // Elemento para a lista de assentos selecionados
+    const quantityEl = document.getElementById('quantity'); // Elemento para a quantidade de assentos
+    const totalPriceEl = document.getElementById('totalPrice'); // Elemento para o preço total
+    const confirmButton = document.getElementById('confirmButton'); // Botão de confirmação
+
+    // Preço por assento e lista de assentos selecionados
+    const pricePerSeat = 1.00;
+    let selectedSeats = [];
+
+    // Estrutura dos assentos (simulando o estado inicial da imagem)
+    const seatMap = [
+        // R: Row (Fileira), C: Column (Coluna), S: Status (0=Disponível, 1=Ocupado, 2=Selecionado, 3=Acessível)
+        // Removido o status 2 para iniciar sem assentos selecionados
+    // Vou marcar a primeira e a última coluna como acessível (3) quando estiverem disponíveis (0).
+    { row: 'A', cols: [0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0] },
+    { row: 'B', cols: [1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1] },
+    { row: 'C', cols: [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1] },
+    { row: 'D', cols: [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1] },
+    { row: 'E', cols: [1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1] },
+    { row: 'F', cols: [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3] },
+    ];
+
+    /**
+     * Função para renderizar o mapa de assentos
+     */
+    function renderSeats() {
+        seatGrid.innerHTML = ''; // Limpa o grid antes de renderizar
+        seatMap.forEach(row => { // Para cada fileira
+            // Rótulo da fileira esquerda (ocupa a primeira coluna)
+            const labelLeft = document.createElement('div'); // Cria o rótulo da fileira
+            labelLeft.className = 'row-label'; // Define a classe CSS
+            labelLeft.textContent = row.row; // Define o texto do rótulo
+            labelLeft.style.gridColumn = '1';
+            seatGrid.appendChild(labelLeft); // Adiciona o rótulo ao grid
+
+            // Assentos
+            row.cols.forEach((status, index) => { // Para cada assento na fileira
+                const seatElement = document.createElement('div'); // Cria o elemento do assento
+                const seatId = `${row.row}${index + 1}`; // Gera o ID do assento (ex: A1, B3)
+                seatElement.className = 'seat'; // Define a classe CSS base
+                seatElement.dataset.id = seatId; // Define o ID do assento no dataset
+                seatElement.dataset.status = status; // Define o status do assento no dataset   
+
+                // Adicionar classes baseadas no status inicial
+                if (status === 1) { // Ocupado
+                    seatElement.classList.add('unavailable'); // Adiciona a classe de ocupado
+                } else if (status === 2) { // Selecionado
+                    seatElement.classList.add('selected'); // Adiciona a classe de selecionado
+                    // Inicializa a lista de selecionados com os assentos da imagem
+                    if (!selectedSeats.includes(seatId)) { // Evita duplicatas
+                        selectedSeats.push(seatId); // Adiciona o assento à lista de selecionados
+                    }
+                } else if (status === 3) {  // Acessível
+                    seatElement.classList.add('accessible');   // Adiciona a classe de acessível
+                    seatElement.innerHTML = '<i class="fas fa-wheelchair"></i>'; // Ícone de cadeira de rodas
+                }
+
+                // Tornar clicável apenas se não estiver ocupado
+                if (status !== 1) {
+                    seatElement.addEventListener('click', handleSeatClick);
+                }
+
+                // Assentos serão adicionados na sequência e ocuparão as colunas 2..13 conforme o template
+                seatGrid.appendChild(seatElement); // Adiciona o assento ao grid
+            });
+
+            // Rótulo da fileira direita (ocupa a última coluna)
+            const labelRight = document.createElement('div'); // Cria o rótulo da fileira direita
+            labelRight.className = 'row-label'; // Define a classe CSS
+            labelRight.textContent = row.row; // Define o texto do rótulo
+            labelRight.style.gridColumn = '14';
+            seatGrid.appendChild(labelRight); // Adiciona o rótulo ao grid
+        });
+
+    // Não atualizar resumo automaticamente aqui — o resumo será atualizado
+    // apenas quando o usuário clicar em "Prosseguir para Pagamento".
+    }
+
+    /**
+     * Restaura seleções salvas em sessionStorage (se houver)
+     */
+    function restoreSelections() {
+        try {
+            const stored = sessionStorage.getItem('cv_selectedSeats');
+            if (!stored) return;
+            const arr = JSON.parse(stored);
+            if (!Array.isArray(arr) || arr.length === 0) return;
+            // marca os assentos no DOM
+            arr.forEach(id => {
+                const seat = document.querySelector(`.seat[data-id="${id}"]`);
+                if (seat && !seat.classList.contains('unavailable')) {
+                    seat.classList.add('selected');
+                    seat.dataset.status = 2;
+                }
+            });
+            // sincroniza o array local e resumo
+            selectedSeats = arr.slice();
+            updateSummary();
+        } catch (e) {
+            // se houver erro ao ler/parsear, ignorar
+        }
+    }
+
+    /**
+     * Função que lida com o clique no assento
+     * @param {Event} e - O evento de clique
+     */
+    function handleSeatClick(e) { // Função para lidar com o clique no assento
+        const seat = e.currentTarget; // Obtém o assento clicado
+        const seatId = seat.dataset.id; // Obtém o ID do assento
+        let status = parseInt(seat.dataset.status); // Obtém o status atual do assento
+
+        // Se o assento está 'Disponível' (0) ou 'Acessível' (3)
+        if (status === 0 || status === 3) { // Verifica se o assento está disponível ou acessível
+            // Selecionar o assento
+            seat.classList.add('selected'); // Adiciona a classe de selecionado
+            seat.dataset.status = 2; // Altera o status para 'Selecionado'
+            selectedSeats.push(seatId); // Adiciona o assento à lista de selecionados
+        }
+        // Se o assento está 'Selecionado' (2)
+        else if (status === 2) {
+            // Desselecionar o assento
+            seat.classList.remove('selected');
+
+            // Determina o status original (Disponível (0) ou Acessível (3))
+            // Para simplificação, vamos verificar se ele tinha a classe 'accessible'
+            const wasAccessible = seat.classList.contains('accessible'); // Verifica se era acessível
+            seat.dataset.status = wasAccessible ? 3 : 0; // Volta para 'Acessível' ou 'Disponível'
+
+            // Remove da lista
+            selectedSeats = selectedSeats.filter(id => id !== seatId);
+        }
+
+        updateSummary(); // Atualiza o resumo após a alteração
+    }
+
+    /**
+     * Função para atualizar o resumo da seleção e o total
+     */
+    function updateSummary() {
+        // Ordenar os assentos (A1, A2, B1, B2...)
+        selectedSeats.sort((a, b) => { // Função de comparação personalizada
+            const rowA = a.charAt(0); // Primeira letra (fileira)
+            const rowB = b.charAt(0); // Primeira letra (fileira)
+            const numA = parseInt(a.substring(1)); // Número do assento
+            const numB = parseInt(b.substring(1)); // Número do assento
+
+            if (rowA !== rowB) { // Se as fileiras são diferentes
+                return rowA.localeCompare(rowB); // Ordena por fileira
+            }
+            return numA - numB; // Ordena por número dentro da mesma fileira
+        });
+
+    const seatCount = selectedSeats.length; // Conta os assentos selecionados
+    const total = seatCount * pricePerSeat; // Calcula o total
+        const totalFormatted = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); // Formata o total em moeda BRL
+
+        selectedSeatsListEl.textContent = selectedSeats.join(', ') || 'Nenhum'; // Atualiza a lista de assentos selecionados
+        quantityEl.textContent = seatCount; // Atualiza a quantidade de assentos
+        totalPriceEl.textContent = totalFormatted; // Atualiza o preço total
+
+        // Habilita/desabilita o botão de confirmação
+        confirmButton.disabled = seatCount === 0;
+
+        // Persistir seleção atual na sessão para manter entre navegações
+        try {
+            sessionStorage.setItem('cv_selectedSeats', JSON.stringify(selectedSeats));
+            sessionStorage.setItem('cv_quantity', String(seatCount));
+            sessionStorage.setItem('cv_total', total.toFixed(2));
+        } catch (e) {
+            // storage não disponível -> ignorar
+        }
+
+        // Atualiza o estado visual dos assentos que foram desmarcados por outras interações
+        // (Isso é mais robusto para manter a interface sincronizada)
+        document.querySelectorAll('.seat').forEach(seat => {
+            if (seat.dataset.status == 2 && !selectedSeats.includes(seat.dataset.id)) { // Verifica se o assento foi selecionado mas não está na lista final
+                 // Acontece se o assento foi selecionado inicialmente (2) mas o array inicial foi corrigido
+                 seat.classList.remove('selected');
+                 // Se o assento selecionado (2) não está na lista final, voltamos ele para o estado inicial
+                 // Neste caso, se for A3 ou A8 (os selecionados iniciais), vamos mantê-los.
+            }
+        });
+    }
+
+    // Inicializa a renderização dos assentos (sem seleções iniciais)
+    renderSeats();
+    // Restaura seleções salvas na sessão, se existirem
+    restoreSelections();
+
+    // Ler query params e mostrar sessão selecionada (se houver)
+    (function(){
+        const params = new URLSearchParams(window.location.search);
+        const date = params.get('date');
+        const time = params.get('time');
+        const cinema = params.get('cinema');
+        const el = document.getElementById('selected-session');
+        if(el){
+            if(date && time){
+                el.textContent = `${cinema ? cinema + ' — ' : ''}${decodeURIComponent(date)} — ${decodeURIComponent(time)}`;
+            } else {
+                el.textContent = '';
+            }
+        }
+    })();
+
+    // Prepara redirecionamento para a página de pagamento com os dados selecionados
+    (function(){
+        // Valores já obtidos da URL (se existirem)
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedDate = urlParams.get('date') || '';
+        const selectedTime = urlParams.get('time') || '';
+        const selectedCinema = urlParams.get('cinema') || '';
+
+        // Extrair nome do filme a partir do elemento .movie-info (formato: "Filme: Nome, Cinevag")
+        const movieInfoEl = document.querySelector('.movie-info');
+        let filmName = '';
+        if (movieInfoEl) {
+            // tenta extrair o texto após "Filme:" e remover sufixos como ", Cinevag"
+            const raw = movieInfoEl.textContent || '';
+            filmName = raw.replace(/^Filme:\s*/i, '').split(',')[0].trim();
+        }
+
+        // Ao confirmar, construir a query string e navegar para tela4.html
+        confirmButton.addEventListener('click', function () {
+            const seatCount = selectedSeats.length;
+            if (seatCount === 0) return; // proteção
+
+            const total = (seatCount * pricePerSeat).toFixed(2);
+            const paramsOut = new URLSearchParams();
+            paramsOut.set('seats', selectedSeats.join(','));
+            paramsOut.set('quantity', String(seatCount));
+            paramsOut.set('total', String(total));
+            if (selectedDate) paramsOut.set('date', selectedDate);
+            if (selectedTime) paramsOut.set('time', selectedTime);
+            if (selectedCinema) paramsOut.set('cinema', selectedCinema);
+            if (filmName) paramsOut.set('film', filmName);
+
+            // redireciona para tela4 com os parâmetros
+            window.location.href = 'tela4.html?' + paramsOut.toString();
+        });
+    })();
+
+    // Se o usuário clicou em "Prosseguir para Pagamento" na tela4, limpar seleção local (ocorre apenas quando realmente prosseguiu)
+    (function(){
+        try {
+            const proceeded = sessionStorage.getItem('proceedToPayment');
+            if (proceeded === 'true') {
+                // limpar seleção visível e dados armazenados
+                document.querySelectorAll('.seat.selected').forEach(s => s.classList.remove('selected'));
+                selectedSeats = [];
+                updateSummary();
+                // remover as chaves relacionadas
+                sessionStorage.removeItem('cv_selectedSeats');
+                sessionStorage.removeItem('cv_quantity');
+                sessionStorage.removeItem('cv_total');
+                sessionStorage.removeItem('proceedToPayment');
+            }
+        } catch (e) {
+            // ignorar se sessionStorage não disponível
+        }
+    })();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Resumo do Pedido - Cinevag</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffcc00",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#121212",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#333] px-10 py-3 sticky top-0 bg-background-dark z-10">
+                <div class="flex items-center gap-4 text-white">
+                    <div class="size-6 text-primary">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Cinevag</h2>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                        <a href="tela1.html">    
+                            <span class="truncate">Entrar</span>
+                        </a>
+                    </button>
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnGmBzkZAverCEQ_wMqVnnfaIrxMCseg2sGd3F9eRevvgL26JjLwIoKuXAGbrD3v2p6Zo5qMlQPLbGeqwKyIN75PUfYPGEa1wCGrE9UdoUm2TuO6CyNlrKR2V3wcC5g5iFfX0qnulxZYHm0XC-FjEYLvPBfccq9lL7FRJNosZlC8ZYySKOmLXa6hcCd_2UbdnkC-Erkpmp8GiY1aUkSV9VBteBa8B1Dn49q4UneXcHU7d-4QLaFmYiqwPYxeZAjMojK4UrUZsIZkE");'></div>
+                </div>
+            </header>
+            
+            <main class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-10">
+                <div class="layout-content-container flex flex-col max-w-5xl flex-1 gap-8">
+                    
+                    <div class="flex flex-wrap justify-between gap-4 items-center">
+                        <div class="flex flex-col gap-2">
+                            <p class="text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Resumo do seu Pedido</p>
+                            <p class="text-[#ffcc00] text-base font-normal leading-normal">Confirme os detalhes abaixo antes de prosseguir para o pagamento.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <div class="md:col-span-2 flex flex-col gap-6 rounded-xl bg-[#1c1c1c] p-6 shadow-lg">
+                            <div class="flex flex-col sm:flex-row items-stretch gap-6">
+                                <div class="w-full sm:w-1/3 bg-center bg-no-repeat aspect-[2/3] bg-cover rounded-lg" data-alt="Pôster do filme Duna: Parte Dois" style='background-image: url("https://ohoje.com/wp-content/uploads/2025/10/O-Telefone-Preto-2-terror-com-Ethan-Hawke-tem-cenas-pos-creditos-1024x576.webp");'></div>
+                                
+                                <div class="flex flex-col gap-3 flex-1">
+                                    <p id="sessionDateTime" class="text-[#ffcc00] text-sm font-medium">15 de Março de 2024, 20:00</p>
+                                    <p id="filmTitle" class="text-white text-2xl font-bold leading-tight">Duna: Parte Dois</p>
+                                    <p id="venueInfo" class="text-[#ffcc00] text-base">Cinevag - Sala 5 - 3D</p>
+                                    <div class="flex items-center gap-4 mt-2 text-sm text-[#ffcc00]">
+                                        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base">theaters</span> 18 anos</span>
+                                        <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base">schedule</span> 2h 46min</span>
+                                    </div>
+                                    <div class="mt-auto pt-4 border-t border-[#472426]">
+                                        <p class="text-white font-bold">Seus Ingressos</p>
+                                        <p id="orderSeats" class="text-[#c89295] text-sm">Assentos: G7, G8</p>
+                                        <p id="orderQuantity" class="text-[#c89295] text-sm">2 x Adulto</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col gap-6 rounded-xl bg-[#1c1c1c] p-6 shadow-lg h-fit">
+                            <h3 class="text-white text-xl font-bold">Resumo de Valores</h3>
+                            <div class="flex flex-col gap-3 border-b border-[#333] pb-4">
+                                <div class="flex justify-between gap-x-6">
+                                    <p id="ticketLineLabel" class="text-[#ffcc00] text-sm">Ingressos</p>
+                                    <p id="ticketLineValue" class="text-white text-sm text-right">R$ 0,00</p>
+                                </div>
+                                <div class="flex justify-between gap-x-6">
+                                    <p class="text-[#ffcc00] text-sm">Taxa de Serviço</p>
+                                    <p id="serviceLineValue" class="text-white text-sm text-right">R$ 0,00</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between gap-x-6">
+                                <p class="text-white text-lg font-bold">Total</p>
+                                <p id="totalValue" class="text-white text-lg font-bold text-right">R$ 0,00</p>
+                            </div>
+                            <div class="flex flex-col gap-3 mt-4">
+                                <a href="tela5.html">
+                                    <button id="proceedButton" class="w-full flex min-w-[84px] max-w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors" type="button">
+                                        <span class="truncate">Prosseguir para Pagamento</span>
+                                    </button>
+                                </a>
+                                    
+                                <a href="tela3.html">
+                                    <button class="w-full flex min-w-[84px] max-w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-primary/50 text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/10 transition-colors">
+                                        <span class="truncate">Editar Pedido</span>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+            <footer class="w-full px-10 py-6 border-t border-solid border-b-[#333] mt-auto">
+                <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+                    <p class="text-sm text-[#ffcc00]">© 2024 Cinevag. Todos os direitos reservados.</p>
+                    <div class="flex gap-4">
+                        <a class="text-sm text-[#ffcc00] hover:text-white" href="#">Ajuda</a>
+                        <a class="text-sm text-[#ffcc00] hover:text-white" href="#">Termos de Uso</a>
+                        <a class="text-sm text-[#ffcc00] hover:text-white" href="#">Política de Privacidade</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script>
+        // Preenche o resumo do pedido a partir da query string
+        (function(){
+            const params = new URLSearchParams(window.location.search);
+            const seats = params.get('seats'); // ex: "A1,A2"
+            const quantity = params.get('quantity');
+            const total = params.get('total'); // ex: "56.00"
+            const date = params.get('date');
+            const time = params.get('time');
+            const film = params.get('film');
+            const cinema = params.get('cinema');
+
+            const filmEl = document.getElementById('filmTitle');
+            const sessionEl = document.getElementById('sessionDateTime');
+            const seatsEl = document.getElementById('orderSeats');
+            const qtyEl = document.getElementById('orderQuantity');
+            const ticketLabelEl = document.getElementById('ticketLineLabel');
+            const ticketValueEl = document.getElementById('ticketLineValue');
+            const serviceValueEl = document.getElementById('serviceLineValue');
+            const totalEl = document.getElementById('totalValue');
+            const venueEl = document.getElementById('venueInfo');
+
+            if (film && filmEl) filmEl.textContent = decodeURIComponent(film);
+            if ((date || time) && sessionEl) {
+                const parts = [];
+                if (date) parts.push(decodeURIComponent(date));
+                if (time) parts.push(decodeURIComponent(time));
+                sessionEl.textContent = parts.join(', ');
+            }
+            if (cinema && venueEl) venueEl.textContent = decodeURIComponent(cinema);
+
+            if (seatsEl && seats) seatsEl.textContent = 'Assentos: ' + decodeURIComponent(seats);
+            if (qtyEl && quantity) qtyEl.textContent = (quantity === '1' ? '1 ingresso' : quantity + ' ingressos');
+
+            // Preencher valores monetários (ticket, service, total)
+            // Se 'total' vier, mostramos no total. Caso queira detalhar ticket/service, seria necessário passar também.
+            try {
+                if (total && totalEl) {
+                    const n = Number(total);
+                    totalEl.textContent = n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                }
+            } catch (e) {
+                if (totalEl) totalEl.textContent = 'R$ ' + (total || '0,00');
+            }
+
+            // Exibir ticket line: se quantity e total disponíveis, calcular ticket unitário
+            if (quantity && total && ticketValueEl) {
+                const q = Number(quantity);
+                const t = Number(total);
+                if (q > 0 && !Number.isNaN(t)) {
+                    const per = t / q;
+                    ticketLabelEl.textContent = `Ingressos (${q}x)`;
+                    ticketValueEl.textContent = per.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                    // manter service como vazio ou zero
+                    if (serviceValueEl) serviceValueEl.textContent = '-';
+                }
+            }
+        })();
+        // Ajusta o botão de prosseguir para enviar a mesma query string ao site de pagamento (tela4.html)
+        (function(){
+            const btn = document.getElementById('proceedButton');
+            if(!btn) return;
+            btn.addEventListener('click', function(event){
+                // sinaliza que o usuário está prosseguindo para o pagamento e salva dados essenciais
+                try {
+                    sessionStorage.setItem('proceedToPayment', 'true');
+
+                    // Captura parâmetros atuais para persistência
+                    const params = new URLSearchParams(window.location.search);
+                    const seats = params.get('seats');
+                    const quantity = params.get('quantity');
+                    const total = params.get('total');
+                    const date = params.get('date');
+                    const time = params.get('time');
+                    const film = params.get('film');
+                    const cinema = params.get('cinema');
+
+                    if (film) sessionStorage.setItem('cv_film', decodeURIComponent(film));
+                    if (date) sessionStorage.setItem('cv_date', decodeURIComponent(date));
+                    if (time) sessionStorage.setItem('cv_time', decodeURIComponent(time));
+                    if (cinema) sessionStorage.setItem('cv_cinema', decodeURIComponent(cinema));
+                    if (seats) sessionStorage.setItem('cv_seats', decodeURIComponent(seats));
+                    if (quantity) sessionStorage.setItem('cv_quantity', quantity);
+                    if (total) sessionStorage.setItem('cv_total', total);
+
+                    // Tenta extrair URL do pôster (caso exista inline style)
+                    try {
+                        const posterDiv = document.querySelector('div[style*="background-image"]');
+                        if (posterDiv) {
+                            const bg = posterDiv.style.backgroundImage || '';
+                            const posterUrl = bg.replace(/^url\(("|')?/, '').replace(/("|')?\)$/, '');
+                            if (posterUrl) sessionStorage.setItem('cv_poster', posterUrl);
+                        }
+                    } catch (e) {
+                        // falha ao capturar poster - não crítico
+                        console.warn('Não foi possível extrair pôster:', e);
+                    }
+                } catch (e) {
+                    // se sessionStorage falhar, continuamos mesmo assim
+                    console.warn('sessionStorage não disponível:', e);
+                }
+
+                // encaminhar para a página de pagamento mantendo os parâmetros da URL atual
+                const qs = window.location.search || '';
+                // navegar para a página de pagamento (tela5.html) mantendo query string
+                window.location.href = 'tela5.html' + qs;
+            });
+        })();
+    </script>
+    <script>
+        // Sincroniza usuário logado (da tela1) para esta página
+        (function(){
+            try {
+                var name = sessionStorage.getItem('cv_user_name');
+                var email = sessionStorage.getItem('cv_user_email');
+                if (name || email) {
+                    // Atualiza botão de entrar para mostrar o usuário
+                    var headerBtn = document.querySelector('header button span.truncate');
+                    if (headerBtn) {
+                        headerBtn.textContent = name || email || 'Perfil';
+                        var btn = headerBtn.closest('button');
+                        if (btn) {
+                            btn.setAttribute('title', email || name || 'Usuário logado');
+                            // opcional: trocar estilo para aparentar ser um rótulo
+                            btn.classList.remove('bg-primary');
+                            btn.style.background = 'transparent';
+                            btn.style.border = '1px solid rgba(255,204,0,0.15)';
+                            btn.style.color = '#ffcc00';
+                        }
+                    }
+
+                    // Também atualiza o avatar tooltip
+                    var avatar = document.querySelector('[data-alt="User avatar"]') || document.getElementById('cv-profile-thumb');
+                    if (avatar) {
+                        avatar.setAttribute('title', (name ? name + (email ? ' — ' + email : '') : email));
+                        avatar.style.cursor = 'pointer';
+                    }
+                }
+            } catch(e){ console.warn('Erro ao sincronizar usuário:', e); }
+        })();
+    </script>
+</body>
+</html>

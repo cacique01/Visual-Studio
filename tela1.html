@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cinevag - Ingressos de Cinema</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> 
+    <script id="tailwind-config"> /* Tailwind CSS Configuration */
+        tailwind.config = { /* Tailwind CSS Configuration */
+            darkMode: "class", /* Enable dark mode via class */
+            theme: { /* Theme customization */
+                extend: { /* Extend default theme */
+                    colors: { /* Custom colors aligned with tela3 palette */
+                        "primary": "#ffcc00", /* Destaque/primary amarelo (tela3) */
+                        "background-light": "#f8f6f6", /* Light background color */
+                        "background-dark": "#121212", /* Fundo escuro (tela3) */
+                        "secondary-dark": "#1c1c1c" /* Container/areas escuras (tela3) */
+                    },
+                    fontFamily: { /* Custom fonts */
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"] /* Display font family */
+                    },
+                    borderRadius: { /* Custom border radius */
+                        "DEFAULT": "0.25rem", /* Default border radius */
+                        "lg": "0.5rem", /* Large border radius */
+                        "xl": "0.75rem", /* Extra large border radius */
+                        "full": "9999px" /* Full border radius */
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        .material-symbols-outlined { /* Material Symbols Outlined Icon Style */
+            font-variation-settings: /* Font variation settings for icons */
+                'FILL' 0, 
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#333] px-10 py-3 sticky top-0 bg-background-dark/80 backdrop-blur-sm z-50">
+                <div class="flex items-center gap-4 text-white">
+                    <div class="size-6 text-primary">
+                        <svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Cinevag</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex gap-2">
+                        <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                            <span class="truncate cursor-pointer" id="openSignup">Cadastre-se</span>
+                        </button>
+                        <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-secondary-dark text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#2a2a2a] transition-colors">
+                            <span class="truncate" id="openLogin">Login</span>
+                        </button>
+                    </div>
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 cursor-pointer" id="cv-profile-thumb" role="button" tabindex="0" aria-label="Abrir imagem do perfil" style='background-image: url("https://i.pinimg.com/originals/83/b8/11/83b811e59b98b9c63669b070463e7d6c.jpg");'></div>
+                </div>
+            </header>
+
+            <main class="layout-content-container flex flex-col max-w-[960px] flex-1 mx-auto w-full">
+                
+                <div class="relative w-full">
+                    <div class="flex overflow-x-auto snap-x snap-mandatory [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-lg">
+                        
+                        <div class="flex-shrink-0 w-full snap-center">
+                            <div class="w-full bg-center bg-no-repeat aspect-[2/1] bg-cover rounded-lg flex flex-col justify-end p-8" data-alt="Movie poster for a fantasy adventure film" style='background-image: linear-gradient(to top, rgba(0,0,0,0.7) 20%, transparent), url("https://tse2.mm.bing.net/th/id/OIF.QqZCY3JLOhsCrk6z2lKPZg?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3");'>
+                                <div class="w-2/3">
+                                    <h2 class="text-white text-4xl font-bold">Telefone Preto 2</h2>
+                                    <button class="mt-4 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                                        <a href="tela2.html">
+                                            <span class="truncate">Comprar Ingressos</span>
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-shrink-0 w-full snap-center">
+                            <div class="w-full bg-center bg-no-repeat aspect-[2/1] bg-cover rounded-lg flex flex-col justify-end p-8" data-alt="Movie poster for a science fiction thriller" style='background-image: linear-gradient(to top, rgba(0,0,0,0.7) 20%, transparent), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAO0JaCnpOnaAw5GDk9xzaFNOvtBtakfXR3Kf9wfdEUv2sXLKWzNoMCpYYcjyfpB1KblUaX_9Y-52-iLH0PrIL49oM0jQ_mZMZRuaVQRJ0nC_8R27rvMyRUbHnL4bCVG2gtRUknfyiiJDM-I4z7ScxOeEPEPHT7J7l-OxuMyAThccFe1AA3YvTdswl7bnRzrjtNzklVTZGQ7LXEKVWoUw2E2fvYMeH-2UJ3RbxN7Cy5DlrtBv6VzuEH20Z-5t18sxOhVWFQj3V4dLY");'>
+                                <div class="w-2/3">
+                                    <h2 class="text-white text-4xl font-bold">Código: Nebulosa</h2>
+                                    <p class="text-white/80 mt-2">No futuro distante, uma hacker descobre uma conspiração que ameaça a realidade. Perseguida por agentes implacáveis, sua única chance é decifrar o misterioso Código: Nebulosa.</p>
+                                    <button class="mt-4 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                                        <span class="truncate">Comprar Ingressos</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-8">Em Cartaz</h2>
+                <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-4 p-4">
+                    
+                    <div class="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] group cursor-pointer relative overflow-hidden" data-alt="Movie poster for 'Echoes of Tomorrow'" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUmGkJrM15Y2hdm3L6Bz5bgAuqlvSFl9dV_h7dbx_lMTQp22ZYs4lJrSm4M6bKSrZZa_wwf_CzsWXH9Oqn165xdAx-IJeEROG7mxChsqoohxTM2z0jBrCuo3su2DoITFb_mU-tVRTV7b_mTrEca68-M8u55RcjLGG5COc1QsiCY1kxk_ljeQmmXOBsFbQNZ_Y4izBtAvHX2Z3ZlG0yTg38wqK69IegRAnT1II7fqCUU-wvpYqp7uRE-6XTzHNU0bkcmxZkR6U2Cps");'>
+                        <p class="text-white text-base font-bold leading-tight w-full line-clamp-2 z-10">Ecos do Amanhã</p>
+                        <div class="absolute inset-0 bg-black/40 group-hover:opacity-100 opacity-0 transition-opacity flex items-center justify-center">
+                            <button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg"><span class="truncate">Ver Mais</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] group cursor-pointer relative overflow-hidden" data-alt="Movie poster for 'The Crimson Cipher'" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFprcG8jh8f2ry3cmqBMctfrNlnQX-a26OrFH8nImLtcSzfG-Y5qji6qDz4LBpyunNA1YCHQ21j7IkBma1JvrRM4q4sdZuf3JUlQWcbC5G2tqfUkmkLIFtR_PQNlVhRMcNK0GE22VyvRPwK7YEM0JKCMxVBMVUrwnURFWhZfD4Cr0IG7lBw7kk-PRmMyHum6Xr63a4VaWN9A2xWd_Bpa6XLoEVuOZyw8m_gSPv6V0NoVr0nVcihDv8C06jLqzHOcbfXA-T7LzbjPY");'>
+                        <p class="text-white text-base font-bold leading-tight w-full line-clamp-2 z-10">A Cifra Carmesim</p>
+                        <div class="absolute inset-0 bg-black/40 group-hover:opacity-100 opacity-0 transition-opacity flex items-center justify-center">
+                            <button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg"><span class="truncate">Ver Mais</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] group cursor-pointer relative overflow-hidden" data-alt="Movie poster for 'Starlight Odyssey'" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwbZ0hcYEHdsoe9DVdJ3zpBiRCieJzJqqV77W9QK_Vpz66wvVdZgajRw0muVk-ckR3w5dOPp9XuPlKhqJA8uQ2pGnetNlAU54y7Z4cZUpBkRvw01IznoGYyzVZrRe7SUCgi7LgdzpQgd87lKUrPHUnbpPeOQPbczbq88qCTDu3JUxhWBy2jbMgaHgJBKC-BaMEpwdiggv_XvaArYuMxMW1aMRoMfN1LIi4rGKb9r9VYoCbPu0Ikio32AXjyMBEUieh5lQceR4MwW4");'>
+                        <p class="text-white text-base font-bold leading-tight w-full line-clamp-2 z-10">Odisseia Estelar</p>
+                        <div class="absolute inset-0 bg-black/40 group-hover:opacity-100 opacity-0 transition-opacity flex items-center justify-center">
+                            <button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg"><span class="truncate">Ver Mais</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] group cursor-pointer relative overflow-hidden" data-alt="Movie poster for 'Neon City Run'" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuD5fUrrJSg5m1gx6HBxT0SncK0AizDCxQMGygLSVXeMDGmg091z3gi9Unul9GVNY1penBa3TUEST0sUhUy0Bokyt0uYtharEm7zZnUzBUpBTVBChm24pQoRM9ZiKn0QR9i8SJ058CiNR9ggaxeLJHk7coXEASQ8uRqv3tbosfDCl9p80Seb2bU0PgPiuUwJPp6lDTwqKXKEFY1y6KRKWVX2OGxohAAkukU0F-EAcsbPA-k_mwUwOK-O4fl8XkFoglTSRVSo8OnF8_Q");'>
+                        <p class="text-white text-base font-bold leading-tight w-full line-clamp-2 z-10">Fuga na Cidade Neon</p>
+                        <div class="absolute inset-0 bg-black/40 group-hover:opacity-100 opacity-0 transition-opacity flex items-center justify-center">
+                            <button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg"><span class="truncate">Ver Mais</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] group cursor-pointer relative overflow-hidden" data-alt="Movie poster for 'Forgotten Kingdom'" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUEdKUBIc45M83j0SvLUTz0SeyUzhMU2yyOFs9GsduwwNJcJyOTuNJBnwZtiTaRI5Q9uoRYd0wXYOFB4XiDM4yyjOSqn4U4cNfEcGO7BDDIODCQQ-s3NGHzE-dXOgKDllzNhRMOdESIC9NJpMW3YD10484eklGdxan8WcSiY27MsgyABZ88WFoWDyGlzM_CkslmYJtP4qTOrlTFTlxC8k5x3KHx7OphF19QYwnM6SOVfeCNZNQ3axfMk_Iy65B7PpfGxE0a9moT0M");'>
+                        <p class="text-white text-base font-bold leading-tight w-full line-clamp-2 z-10">O Reino Esquecido</p>
+                        <div class="absolute inset-0 bg-black/40 group-hover:opacity-100 opacity-0 transition-opacity flex items-center justify-center">
+                            <button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg"><span class="truncate">Ver Mais</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Pré-vendas</h2>
+                <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-4 p-4">
+                    
+                    <div class="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] group cursor-pointer relative overflow-hidden" data-alt="Movie poster for 'Cosmic Drift'" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeviRhrIaRr4V3htN9iNV0wAhZ09hNTzdD7cQ5hlIiQwyzwpwJN0pCF29iZ06cbtwmOEFBA55pCENUpw3J3XP9reexG6OnHPQHQk-gqXQmj74PzRlYE0VAqY_zpN9kgtb5i4we5jM_eZd8uXg3Swz4wdOW9rWTi3nJZDVMG_z90CVD460XupSPsulQha9u3aVf67tPVAuE51dXcrrzOY6YqPYmQQht2pQ862F9DYjIaXxR8BOO-jKp8PFRl1dEloUpN1hv4BSUMwc");'>
+                        <p class="text-white text-base font-bold leading-tight w-full line-clamp-2 z-10">Deriva Cósmica</p>
+                        <div class="absolute inset-0 bg-black/40 group-hover:opacity-100 opacity-0 transition-opacity flex items-center justify-center">
+                            <button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg"><span class="truncate">Ver Mais</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] group cursor-pointer relative overflow-hidden" data-alt="Movie poster for 'Shadows of the Past'" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGDCnjHD1N7gRb-VIwKO_0q-HeYs7A2BChoa2qrRd8lXrYe8yT9Pfw7doPwvmweq41KBL8xQc-ArHuHdnd0Uqh3-ft88ydW5PoDOoPV6c2CKtIbRoWEu6z7NMSnSFcvBJ2lfIPrH6zmLt5zc_OAMshPluCN6uZVLbbV6JM17jwUHtWg4J1WUyE4WUPcnisz91JK3aIo6jq0rD73wADqRfe4_ERiRL5Bx6WcGQM8uDy3yTpObjf1sTYFxbCkbbRmhHUzNhxsnuluk4");'>
+                        <p class="text-white text-base font-bold leading-tight w-full line-clamp-2 z-10">Sombras do Passado</p>
+                        <div class="absolute inset-0 bg-black/40 group-hover:opacity-100 opacity-0 transition-opacity flex items-center justify-center">
+                            <button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg"><span class="truncate">Ver Mais</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cover bg-center flex flex-col gap-3 rounded-lg justify-end p-4 aspect-[3/4] group cursor-pointer relative overflow-hidden" data-alt="Movie poster for 'The Last Stand'" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAdcrrrO4BqthvDHFx6VKYYLZXes9mhYAo85h5WYFnR-P6-prdmIoXLWBJqvTXxk62NIF2i-pzK0xy676BoAQzCw3urXoXadjzSX29VpJ1y6XCV6xP17We0gvGUwaeGgAo6pMZXBrnuvoyYtyjyn7Nomz_nnHuE0M6wJycjMii1hZ8Bq8tNZVWdRZ2BFkX9y3sacYtHg9QMLMK05qrTqMmBntmo3CUMW4WkmYKIaTlwtZEcqJQbQK5eaxZ7qSz3U75ptNFSG5U8MMc");'>
+                        <p class="text-white text-base font-bold leading-tight w-full line-clamp-2 z-10">A Última Resistência</p>
+                        <div class="absolute inset-0 bg-black/40 group-hover:opacity-100 opacity-0 transition-opacity flex items-center justify-center">
+                            <button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-bold rounded-lg"><span class="truncate">Ver Mais</span></button>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <footer class="w-full bg-secondary-dark mt-16 py-8">
+                <div class="max-w-[960px] mx-auto text-[#ccc] px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-4">Cinevag</h3>
+                            <p class="text-sm">Sua jornada cinematográfica começa aqui. Compre ingressos de forma fácil e rápida.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-4">Institucional</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li><a class="hover:text-white" href="#">Sobre Nós</a></li>
+                                <li><a class="hover:text-white" href="#">Termos de Uso</a></li>
+                                <li><a class="hover:text-white" href="#">Política de Privacidade</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-4">Ajuda</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li><a class="hover:text-white" href="#">FAQ</a></li>
+                                <li><a class="hover:text-white" href="#">Contato</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-4">Siga-nos</h3>
+                            <div class="flex space-x-4">
+                                <a class="text-white/80 hover:text-white" data-alt="Facebook icon" href="#">FB</a>
+                                <a class="text-white/80 hover:text-white" data-alt="Twitter icon" href="#">TW</a>
+                                <a class="text-white/80 hover:text-white" data-alt="Instagram icon" href="#">IG</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-t border-[#333] mt-8 pt-6 text-center text-sm">
+                        <p>© 2024 Cinevag. Todos os direitos reservados.</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+    
+    <script id="cv-signup-script">
+        (function(){
+            if (document.getElementById('cv-signup-script-inited')) return;
+            document.getElementById('cv-signup-script-inited') || document.body.insertAdjacentHTML('beforeend','<meta id="cv-signup-script-inited">');
+            var btn = document.getElementById('openSignup');
+            if(!btn) return;
+            btn.addEventListener('click', function openSignup(){
+                if(document.getElementById('cv-signup-modal')) return;
+                var modal = document.createElement('div');
+                modal.id = 'cv-signup-modal';
+                modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4';
+                modal.innerHTML = `
+                    <div class="w-full max-w-md rounded-lg bg-white dark:bg-background-dark p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-black dark:text-white">Cadastro</h3>
+                            <button id="cv-signup-close" class="text-black/70 dark:text-white/70">✕</button>
+                        </div>
+                        <form id="cv-signup-form" class="space-y-3">
+                            <label class="block">
+                                <span class="text-sm text-black/80 dark:text-white/80">Nome</span>
+                                <input name="name" required class="mt-1 w-full rounded px-3 py-2 border bg-background-light dark:bg-[#2b1a1a] text-black dark:text-white" />
+                            </label>
+                            <label class="block">
+                                <span class="text-sm text-black/80 dark:text-white/80">Email</span>
+                                <input type="email" name="email" required class="mt-1 w-full rounded px-3 py-2 border bg-background-light dark:bg-[#2b1a1a] text-black dark:text-white" />
+                            </label>
+                            <label class="block">
+                                <span class="text-sm text-black/80 dark:text-white/80">Senha</span>
+                                <input type="password" name="password" required class="mt-1 w-full rounded px-3 py-2 border bg-background-light dark:bg-[#2b1a1a] text-black dark:text-white" />
+                            </label>
+                            <div class="flex items-center justify-end gap-2 pt-2">
+                                <button type="button" id="cv-signup-cancel" class="px-4 py-2 rounded bg-[#472426] text-white">Cancelar</button>
+                                <button type="submit" class="px-4 py-2 rounded bg-primary text-white">Criar conta</button>
+                            </div>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+
+                function closeModal(){
+                    var m = document.getElementById('cv-signup-modal');
+                    if(m) m.remove();
+                    document.removeEventListener('keydown', escHandler);
+                }
+                function escHandler(e){ if(e.key === 'Escape') closeModal(); }
+
+                modal.addEventListener('click', function(e){
+                    if(e.target === modal) closeModal();
+                });
+                document.getElementById('cv-signup-close').addEventListener('click', closeModal);
+                document.getElementById('cv-signup-cancel').addEventListener('click', closeModal);
+                document.addEventListener('keydown', escHandler);
+
+                document.getElementById('cv-signup-form').addEventListener('submit', function(e){
+                    e.preventDefault();
+                    // aqui você pode enviar os dados via fetch/AJAX
+                    var data = new FormData(e.target);
+                    console.log('Cadastro:', {
+                        name: data.get('name'),
+                        email: data.get('email')
+                    });
+                    // simular sucesso e fechar modal
+                    closeModal();
+                    // opcional: mostrar confirmação rápida
+                    alert('Conta criada com sucesso. Agora você pode usar o email e senha para entrar.');
+
+                    // Persistir usuário localmente (localStorage) com hash da senha
+                    (async function(){
+                        try {
+                            var name = data.get('name') || '';
+                            var email = (data.get('email') || '').toLowerCase();
+                            var password = data.get('password') || '';
+
+                            // função de hash SHA-256
+                            async function hashPassword(pw){
+                                if (!pw) return '';
+                                var enc = new TextEncoder();
+                                var buf = enc.encode(pw);
+                                var hashBuf = await crypto.subtle.digest('SHA-256', buf);
+                                var hashArray = Array.from(new Uint8Array(hashBuf));
+                                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                            }
+
+                            function loadUsers(){
+                                try { return JSON.parse(localStorage.getItem('cv_users') || '{}'); } catch(e){ return {}; }
+                            }
+                            function saveUsers(obj){
+                                try { localStorage.setItem('cv_users', JSON.stringify(obj)); } catch(e){ console.warn(e); }
+                            }
+
+                            var users = loadUsers();
+                            // não sobrescrever usuário existente
+                            if (users[email]) {
+                                alert('Já existe uma conta registrada com esse email. Faça login ou use outro email.');
+                                return;
+                            }
+                            var pwHash = await hashPassword(password);
+                            // armazena por email
+                            users[email] = { name: name, email: email, passwordHash: pwHash, createdAt: Date.now() };
+                            saveUsers(users);
+
+                            // marcar sessão ativa
+                            sessionStorage.setItem('cv_user_name', name);
+                            sessionStorage.setItem('cv_user_email', email);
+
+                            // Atualiza UI (esconder botões) e focar perfil
+                            (function(){
+                                var signupSpan = document.getElementById('openSignup');
+                                if (signupSpan) {
+                                    var signupBtn = signupSpan.closest('button');
+                                    if (signupBtn) signupBtn.style.display = 'none';
+                                }
+                                var loginSpan = document.getElementById('openLogin');
+                                if (loginSpan) {
+                                    var loginBtn = loginSpan.closest('button');
+                                    if (loginBtn) loginBtn.style.display = 'none';
+                                }
+                                var profile = document.getElementById('cv-profile-thumb');
+                                if (profile) profile.focus();
+                            })();
+
+                            // Garantir que a telinha seja criada/atualizada após o cadastro
+                            try { if (window.cvShowLoggedIn) window.cvShowLoggedIn(name || email); } catch(e){ console.warn(e); }
+                        } catch (e) { console.warn('Erro ao salvar usuário localmente:', e); }
+                    })();
+                });
+            });
+        })();
+    </script>
+
+    <script id="cv-login-script">
+        (function(){
+            if (document.getElementById('cv-login-script-inited')) return;
+            document.body.insertAdjacentHTML('beforeend','<meta id="cv-login-script-inited">');
+            var btn = document.getElementById('openLogin');
+            if(!btn) return;
+            btn.addEventListener('click', function openLogin(){
+                if(document.getElementById('cv-login-modal')) return;
+                var modal = document.createElement('div');
+                modal.id = 'cv-login-modal';
+                modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4';
+                modal.innerHTML = `
+                    <div class="w-full max-w-md rounded-lg bg-white dark:bg-background-dark p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-black dark:text-white">Entrar</h3>
+                            <button id="cv-login-close" class="text-black/70 dark:text-white/70">✕</button>
+                        </div>
+                        <form id="cv-login-form" class="space-y-3">
+                            <label class="block">
+                                <span class="text-sm text-black/80 dark:text-white/80">Email ou usuário</span>
+                                <input name="user" required class="mt-1 w-full rounded px-3 py-2 border bg-background-light dark:bg-[#2b1a1a] text-black dark:text-white" />
+                            </label>
+                            <label class="block">
+                                <span class="text-sm text-black/80 dark:text-white/80">Senha</span>
+                                <input type="password" name="password" required class="mt-1 w-full rounded px-3 py-2 border bg-background-light dark:bg-[#2b1a1a] text-black dark:text-white" />
+                            </label>
+                            <div class="flex items-center justify-end gap-2 pt-2">
+                                <button type="button" id="cv-login-cancel" class="px-4 py-2 rounded bg-[#472426] text-white">Cancelar</button>
+                                <button type="submit" class="px-4 py-2 rounded bg-primary text-white">Entrar</button>
+                            </div>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+
+                function closeModal(){
+                    var m = document.getElementById('cv-login-modal');
+                    if(m) m.remove();
+                    document.removeEventListener('keydown', escHandler);
+                }
+                function escHandler(e){ if(e.key === 'Escape') closeModal(); }
+
+                modal.addEventListener('click', function(e){
+                    if(e.target === modal) closeModal();
+                });
+                document.getElementById('cv-login-close').addEventListener('click', closeModal);
+                document.getElementById('cv-login-cancel').addEventListener('click', closeModal);
+                document.addEventListener('keydown', escHandler);
+
+                document.getElementById('cv-login-form').addEventListener('submit', function(e){
+                    e.preventDefault();
+                    var data = new FormData(e.target);
+                    // Tenta autenticar contra usuários salvos em localStorage
+                    (async function(){
+                        try {
+                            var identifier = (data.get('user') || '').toLowerCase();
+                            var password = data.get('password') || '';
+
+                            async function hashPassword(pw){
+                                if (!pw) return '';
+                                var enc = new TextEncoder();
+                                var buf = enc.encode(pw);
+                                var hashBuf = await crypto.subtle.digest('SHA-256', buf);
+                                var hashArray = Array.from(new Uint8Array(hashBuf));
+                                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                            }
+
+                            function loadUsers(){
+                                try { return JSON.parse(localStorage.getItem('cv_users') || '{}'); } catch(e){ return {}; }
+                            }
+
+                            var users = loadUsers();
+                            var found = null;
+                            // identifier can be email or name; try email first
+                            if (users[identifier]) found = users[identifier];
+                            else {
+                                // search by name
+                                for (var k in users) {
+                                    if (users[k] && users[k].name && users[k].name.toLowerCase() === identifier) {
+                                        found = users[k]; break;
+                                    }
+                                }
+                            }
+
+                            if (!found) {
+                                alert('Usuário não encontrado. Verifique email/usuário.');
+                                return;
+                            }
+
+                            var hash = await hashPassword(password);
+                            if (hash !== found.passwordHash) {
+                                alert('Senha incorreta.');
+                                return;
+                            }
+
+                            // sucesso
+                            sessionStorage.setItem('cv_user_name', found.name || identifier);
+                            sessionStorage.setItem('cv_user_email', found.email || '');
+                            closeModal();
+                            alert('Login efetuado com sucesso.');
+
+                            // Atualiza UI para logado
+                            (function(){
+                                var signupSpan = document.getElementById('openSignup');
+                                if (signupSpan) {
+                                    var signupBtn = signupSpan.closest('button');
+                                    if (signupBtn) signupBtn.style.display = 'none';
+                                }
+                                var loginSpan = document.getElementById('openLogin');
+                                if (loginSpan) {
+                                    var loginBtn = loginSpan.closest('button');
+                                    if (loginBtn) loginBtn.style.display = 'none';
+                                }
+                                var profile = document.getElementById('cv-profile-thumb');
+                                if (profile) profile.focus();
+                            })();
+
+                            // Garantir que a telinha seja criada/atualizada após o login
+                            try { if (window.cvShowLoggedIn) window.cvShowLoggedIn(found.name || identifier); } catch(e){ console.warn(e); }
+
+                        } catch(e) {
+                            console.error('Erro no login:', e);
+                            alert('Ocorreu um erro ao tentar logar.');
+                        }
+                    })();
+                });
+            });
+        })();
+    </script>
+
+    <script id="cv-profile-script">
+        (function(){
+            // Exponha uma função global para abrir a imagem em tela cheia.
+            // Assim outros scripts podem chamá-la quando necessário (por exemplo, a "telinha" de perfil).
+            if (window.cvOpenProfileImage) return; // já exposto
+            window.cvOpenProfileImage = function(options){
+                if(document.getElementById('cv-profile-modal')) return;
+                var imgSrc = (options && options.src) || document.getElementById('cv-profile-thumb')?.style.backgroundImage?.replace(/^url\(("|')?/, '').replace(/("|')?\)$/, '') || 'https://i.pinimg.com/originals/83/b8/11/83b811e59b98b9c63669b070463e7d6c.jpg';
+                var modal = document.createElement('div');
+                modal.id = 'cv-profile-modal';
+                modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4';
+                modal.innerHTML = `
+                    <div class="relative w-full max-w-4xl max-h-[90vh]">
+                        <button id="cv-profile-close" class="absolute top-0 right-0 m-2 text-white text-2xl leading-none">✕</button>
+                        <img src="${imgSrc}" alt="Foto do perfil" class="block w-full h-auto max-h-[90vh] object-contain rounded"/>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+
+                function closeModal(){
+                    var m = document.getElementById('cv-profile-modal');
+                    if(m) m.remove();
+                    document.removeEventListener('keydown', escHandler);
+                }
+                function escHandler(e){ if(e.key === 'Escape') closeModal(); }
+
+                modal.addEventListener('click', function(e){
+                    if(e.target === modal) closeModal();
+                });
+                document.getElementById('cv-profile-close').addEventListener('click', closeModal);
+                document.addEventListener('keydown', escHandler);
+            };
+        })();
+    </script>
+
+    <script id="cv-auth-ui">
+        (function(){
+            // Atualiza UI se usuário estiver autenticado (sessionStorage.cv_user_name)
+            function showLoggedIn(name){
+                try {
+                    var signupSpan = document.getElementById('openSignup');
+                    if (signupSpan) {
+                        var signupBtn = signupSpan.closest('button');
+                        if (signupBtn) signupBtn.style.display = 'none';
+                    }
+                    var loginSpan = document.getElementById('openLogin');
+                    if (loginSpan) {
+                        var loginBtn = loginSpan.closest('button');
+                        if (loginBtn) loginBtn.style.display = 'none';
+                    }
+                    // opcional: adicionar tooltip com nome
+                    var profile = document.getElementById('cv-profile-thumb');
+                    if (profile) {
+                        profile.setAttribute('title', name || 'Perfil');
+                    }
+                    // cria menu de perfil com opção de deslogar
+                    createProfileMenu();
+                } catch(e){ console.warn(e); }
+            }
+
+            function createProfileMenu(){
+                // evita duplicar o modal da telinha
+                if (document.getElementById('cv-profile-menu-modal')) return;
+                var header = document.querySelector('header');
+                if (!header) return;
+                var menu = document.createElement('div');
+                // Cria uma "telinha" modal central com nome, e-mail, imagem pequena e logout.
+                menu.id = 'cv-profile-menu-modal';
+                menu.className = 'fixed inset-0 z-50 flex items-center justify-center p-4';
+                menu.style.display = 'none';
+                menu.innerHTML = `
+                    <div class="bg-white dark:bg-background-dark text-black dark:text-white rounded-lg shadow-lg p-4 w-80 relative">
+                        <button id="cv-profile-modal-close" class="absolute top-2 right-2 text-black/60 dark:text-white/60">✕</button>
+                        <div class="flex items-center gap-3">
+                            <div class="w-16 h-16 rounded-full bg-cover bg-center" id="cv-profile-modal-thumb" style="background-image: url('https://i.pinimg.com/originals/83/b8/11/83b811e59b98b9c63669b070463e7d6c.jpg');"></div>
+                            <div class="flex-1">
+                                <div id="cv-profile-name" class="text-sm font-medium">Nome do usuário</div>
+                                <div id="cv-profile-email" class="text-xs text-gray-600 mt-1">email@exemplo.com</div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button id="cv-logout-btn" class="w-full text-left px-3 py-2 bg-[#f3f3f3] dark:bg-[#2a2a2a] rounded">Sair</button>
+                        </div>
+                    </div>`;
+                // adiciona como primeiro filho do body para overlay completo
+                document.body.appendChild(menu);
+
+                // Toggle modal on profile click
+                var profile = document.getElementById('cv-profile-thumb');
+                if (profile) {
+                    profile.addEventListener('click', function(e){
+                        e.stopPropagation();
+                        menu.style.display = (menu.style.display === 'none' || !menu.style.display) ? 'flex' : 'none';
+                        if (menu.style.display === 'flex') {
+                            try {
+                                var name = sessionStorage.getItem('cv_user_name') || 'Usuário';
+                                var email = sessionStorage.getItem('cv_user_email') || '';
+                                var menuName = document.getElementById('cv-profile-name');
+                                var menuEmail = document.getElementById('cv-profile-email');
+                                var thumbSmall = document.getElementById('cv-profile-modal-thumb');
+                                if (menuName) menuName.textContent = name;
+                                if (menuEmail) menuEmail.textContent = email;
+                                if (thumbSmall) {
+                                    var bg = document.getElementById('cv-profile-thumb')?.style.backgroundImage || '';
+                                    thumbSmall.style.backgroundImage = bg || thumbSmall.style.backgroundImage;
+                                }
+                            } catch(e){ console.warn(e); }
+                        }
+                    });
+                }
+
+                // Fecha modal clicando fora ou no botão fechar
+                menu.addEventListener('click', function(e){ if (e.target === menu) menu.style.display = 'none'; });
+                document.getElementById('cv-profile-modal-close').addEventListener('click', function(){ menu.style.display = 'none'; });
+
+                // Ao clicar na miniatura dentro da telinha, abre imagem completa (usa função global exposta)
+                var smallThumb = document.getElementById('cv-profile-modal-thumb');
+                if (smallThumb) {
+                    smallThumb.addEventListener('click', function(e){
+                        e.stopPropagation();
+                        var bg = smallThumb.style.backgroundImage.replace(/^url\(("|')?/, '').replace(/("|')?\)$/, '');
+                        if (window.cvOpenProfileImage) window.cvOpenProfileImage({ src: bg });
+                    });
+                    smallThumb.setAttribute('role','button');
+                    smallThumb.setAttribute('tabindex','0');
+                    smallThumb.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); smallThumb.click(); } });
+                }
+
+                // Close modal on outside click handled above; create logout handler
+                var logoutBtn = document.getElementById('cv-logout-btn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', function(){
+                        try { sessionStorage.removeItem('cv_user_name'); sessionStorage.removeItem('cv_user_email'); } catch(e){console.warn(e);}                        
+                        var signupSpan = document.getElementById('openSignup');
+                        if (signupSpan) { var signupBtn = signupSpan.closest('button'); if (signupBtn) signupBtn.style.display = ''; }
+                        var loginSpan = document.getElementById('openLogin');
+                        if (loginSpan) { var loginBtn = loginSpan.closest('button'); if (loginBtn) loginBtn.style.display = ''; }
+                        if (menu) menu.remove();
+                    });
+                }
+            }
+
+            // Expor um helper global para que outros scripts (signup/login) possam ativar a UI de logado
+            window.cvShowLoggedIn = showLoggedIn;
+
+            // Inicializar conforme sessionStorage
+            document.addEventListener('DOMContentLoaded', function(){
+                try {
+                    var name = sessionStorage.getItem('cv_user_name');
+                    if (name) {
+                        var nameEl = document.getElementById('cv-profile-name');
+                        if (nameEl) nameEl.textContent = name;
+                        showLoggedIn(name);
+                        // preenche o nome no menu if already created
+                        var menuName = document.getElementById('cv-profile-name');
+                        if (menuName) menuName.textContent = name;
+                    }
+                } catch(e){ console.warn(e); }
+            });
+        })();
+    </script>
+
+</body>
+</html>
